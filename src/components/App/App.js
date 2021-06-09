@@ -46,7 +46,7 @@ class App extends React.Component {
         <h1>ravenous</h1>
         <SearchBar searchYelp={this.searchYelp}/>
         {this.check()}
-        <Suggestion />
+        {/* <Suggestion /> */}
       </div>
     );
   }

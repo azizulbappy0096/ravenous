@@ -1,8 +1,8 @@
-const apiKey = '1Vtimw_Pv9x3s9NKC8xURDZ3nq0DXSjGZRxJ-vOJ0a9gjZZG1wUNL0TXcjel5XEfhahNQNxCRWwlaTvo1iZOIKOLGv7it3tx2Qx0Xmnq1Eexw_vjbRQCXEx1AZoyX3Yx';
+const apiKey = 'fBHO-bjrviLyq4_XYq0IUD6-CgpzGZx92ky6i4UdO7soVE2u1_HtaxTmS3lHN4mjWK_KY4TLKirLEivbIhghmZsz1ws8_Thumflwrtwzme8CWMEWh6J835BzNsO_YHYx';
 
 const Yelp = {
     search(term, location, sortBy) {
-        return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`, {
+        return fetch(`https://corsanywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`, {
             headers: {
                 Authorization: `Bearer ${apiKey}`   
             }
@@ -13,6 +13,7 @@ const Yelp = {
             throw new Error('Request failed!');
         }, networkError => console.log(networkError.message)
         ).then(jsonResponse => {
+
             if(jsonResponse.businesses) {
                 return jsonResponse.businesses.map(business => ({
                     id: business.id,
@@ -33,7 +34,9 @@ const Yelp = {
                 apology: 'We are sorry.',
                 status: 'Our service is not available in that location.'
             });
-        }); 
+        }).catch(err => {
+            console.log(err)
+        }) 
     }
 };
 
